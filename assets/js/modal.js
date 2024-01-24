@@ -1,3 +1,4 @@
+
 /*const modalLinks = document.querySelectorAll(".modal-link");
 const body = document.querySelector("body");
 const lockPadding = document.querySelectorAll(".lock-padding");
@@ -58,33 +59,167 @@ function bodyLock() {}
 function bodyUnLock() {}*/
 
 
-const groupsBtn = document.querySelector(".group-btn");
-const modalEl = document.querySelector(".modal");
+/*OpenSidebar*/
+const CONTACT_GROUPS = "Группы контактов";
+const ADDING_CONTACT = "Добавление контакта";
 
-groupsBtn.addEventListener("click", openModal);
+const groupsBtn = document.querySelector("#groups-btn");
+const addContactBtn = document.querySelector("#add-contact-btn");
+const sidebarBody = document.querySelector("#sidebar");
+const sidebarContent = document.querySelector("#sidebar-content");
 
-function openModal() {
-    modalEl.classList.add("modal--show");
+groupsBtn.addEventListener("click", () => openSidebar(CONTACT_GROUPS));
+addContactBtn.addEventListener("click", () => openSidebar(ADDING_CONTACT));
+
+
+
+function openSidebar(title) {
+    sidebarBody.classList.add("open");
     document.body.classList.add("stop-scrolling");
-    /*modalEl.innerHTML = ``;*/
 
-    const btnClose = document.querySelector(".modal__close");
-    btnClose.addEventListener("click", () => closeModal());
+    sidebarContent.innerHTML =`
+            <header class="sidebar-header">
+                <h2 class="sidebar-title">${title}</h2>
+
+                <button type="button" id="sidebar-close" class="sidebar-close">
+                    <img src="./assets/icons/closeIcon.svg" alt="close-icon">
+                </button>
+            </header>
+
+            <!-- Группы -->
+            <main class="sidebar-main" >
+                ${title === CONTACT_GROUPS 
+                    ? `
+                        <section id="groups-container" class="groups-container" >
+                        </section>
+                    `
+                    : ""
+                }
+                
+                ${title === ADDING_CONTACT 
+                    ? 
+                        `
+                            <form id="content-sidebar-form" class="content-sidebar-form">
+                                <input 
+                                    id="content-sidebar-form-person" 
+                                    class="content-sidebar-form-person" 
+                                    placeholder="Введите ФИО" 
+                                    type="text"
+                                    aria-label=content-sidebar-form-person
+                                >
+                                <input 
+                                    id="content-sidebar-form-number" 
+                                    class="content-sidebar-form-number" 
+                                    placeholder="Введите номер" 
+                                    type="tel"
+                                    aria-label="content-sidebar-form-number"
+                                >
+                                <select 
+                                    class="content-sidebar-form-groups" 
+                                    name="Выберите группу" 
+                                    id="choose-group"
+                                    aria-label="choose-group"
+                                ></select>
+                            </form>
+                        ` 
+                    : ""
+                }
+            </main>
+
+            <footer class="sidebar-footer">
+                ${title === CONTACT_GROUPS
+                    ? `<button type="button" id="createButton" class="modal__button secondary">Добавить</button>`
+                    : ""
+                }
+                <button type="button" class="modal__button primary">Сохранить</button>
+            </footer>
+    `;
+
+
+    const btnClose = document.querySelector("#sidebar-close");
+    btnClose.addEventListener("click", () => closeSidebar());
+
+
+    /*createBtn*/
+    const container = document.querySelector("#groups-container");
+    const createButton = document.querySelector("#createButton");
+    createButton.addEventListener("click", CreateElement);
+
+    function CreateElement() {
+        const elementHTML = `
+            <div class="input__area">
+                <input type="text" class="modal__input" placeholder="Введите название" value="">
+                 <button type="button" class="modal__button">X</button>
+            </div>
+        `;
+
+        container.innerHTML += elementHTML;
+
+        const buttonElement = container.querySelector(".modal__button:last-child");
+
+        buttonElement.addEventListener("click", () => {
+            container.removeChild(buttonElement.parentNode);
+        });
+    }
 }
 
-function closeModal() {
-    modalEl.classList.remove("modal--show");
+function closeSidebar() {
+    sidebarBody.classList.remove("open");
     document.body.classList.remove("stop-scrolling");
 }
 
 window.addEventListener("click", (e) => {
-    if (e.target === modalEl) {
-        closeModal();
+    if (e.target === sidebarBody) {
+        closeSidebar();
     }
 });
 
 window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-        closeModal();
+        closeSidebar();
     }
 });
+
+function removeItemHandler(id) {
+
+}
+
+/*createBtn*/
+/*const container = document.querySelector("#groupsContainer");
+const createButton = document.querySelector("#createButton");
+createButton.addEventListener("click", CreateElement);
+
+function CreateElement() {
+    alert("message")
+    const divElement = document.createElement("div");
+    divElement.className = "input__area";
+
+    // Создаем input элемент
+    const inputElement = document.createElement("input");
+    inputElement.type = "text";
+    inputElement.className = "modal__input";
+    inputElement.placeholder = "Введите название";
+    inputElement.value = "";
+
+    // Создаем button элемент
+    const buttonElement = document.createElement("button");
+    buttonElement.type = "button";
+    buttonElement.className = "modal__button";
+    buttonElement.textContent = "X";
+
+    // Добавляем input и button в div элемент
+    divElement.appendChild(inputElement);
+    divElement.appendChild(buttonElement);
+
+    // Добавляем div элемент в контейнер
+    container.appendChild(divElement);
+
+
+
+
+    /!*removeBtn*!/
+    buttonElement.addEventListener("click", () => {
+        // Удаляем div элемент при нажатии на кнопку "X"
+        container.removeChild(divElement);
+    });
+}*/

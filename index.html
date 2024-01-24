@@ -1,89 +1,58 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <title>landing</title>
     <meta charset="UTF-8">
     <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
     <!--<link rel="stylesheet" type="text/css" href="./assets/styles/fonts.css">
     <link rel="stylesheet" type="text/css" href="./assets/styles/footer.css">-->
-    <link rel="stylesheet" type="text/css" href="./assets/styles/initial.css">
 
+    <link rel="stylesheet" type="text/css" href="./assets/styles/resetStyles.css">
     <link rel="stylesheet" type="text/css" href="./assets/styles/main.css">
     <link rel="stylesheet" type="text/css" href="./assets/styles/header.css">
     <link rel="stylesheet" type="text/css" href="./assets/styles/modal.css">
     <link rel="stylesheet" type="text/css" href="./assets/styles/buttons.css">
+
+    <title>Contact book</title>
 </head>
 <body>
+
 <header class="header">
-    <h1>Книга контактов</h1>
-    <nav>
-        <button>Добавить контакт</button>
-        <button class="group-btn">Группы</button>
-        <!--<a href="#">Добавить контакт</a>
-        <a href="#modal" >Группы</a>-->
+    <div class="header-logo">
+        <img src="./assets/icons/contactBookIcon.svg" alt="book-icon">
+        <h1 class="header-title">Книга контактов</h1>
+    </div>
+
+    <nav class="header-navigation">
+
+        <button id="add-contact-btn" type="button" class="primary-alt add-contact-btn">
+            <span>Добавить контакт</span>
+            <img class="add-icon-img" src="./assets/icons/addIcon.svg" alt="add-icon">
+        </button>
+
+        <button id="groups-btn" type="button" class="primary groups-btn">Группы</button>
     </nav>
+
 </header>
+
 <main>
     <section>
         <p class="overlay__text">Список контактов пуст</p>
     </section>
-    <section id="modal" class="modal">
-        <div class="modal__body">
-            <header class="modal__header">
-                <h2 class="modal__title">Группы контактов</h2>
-                <button type="button" class="modal__close">X</button>
-                <!--<a href="#" class="modal__close">X</a>-->
-            </header>
 
+    <aside id="sidebar" class="sidebar">
 
+        <!-- SideBar -->
+        <div id="sidebar-body" class="sidebar-body">
+            <div id="sidebar-content" class="sidebar-content">
 
-            <!-- Группы -->
-            <section class="modal__content">
-                <section class="groups">
-                    <div>
-                        <input type="text" class="modal__input" value="Friends"/>
-                        <button type="button" class="modal__button">X</button>
-                    </div>
-
-                    <div>
-                        <input type="text" class="modal__input" value="Friends2"/>
-                        <button type="button" class="modal__button">X</button>
-                    </div>
-                </section>
-
-                <div class="btn-area">
-                    <button type="button" class="modal__button">Добавить</button>
-                    <button type="button" class="modal__button">Сохранить</button>
-                </div>
-            </section>
-
-
-
-            <!-- Новый контакт -->
-            <!--<form class="modal__content">
-                <section class="groups">
-                    <div>
-                        <input type="text" id="nameInput" class="modal__input" placeholder="Имя" aria-label="Имя" />
-                        <button type="button" class="modal__button">X</button>
-                    </div>
-
-                    <div>
-                        <input type="text" id="commentInput" class="modal__input" placeholder="Коммент" aria-label="Коммент" />
-                        <button type="button" class="modal__button">X</button>
-                    </div>
-                </section>
-
-                <div class="btn-area">
-                    <button type="button" class="modal__button">Добавить</button>
-                    <button type="button" class="modal__button">Сохранить</button>
-                </div>
-            </form>-->
-
-
+            </div>
         </div>
-    </section>
+
+    </aside>
 </main>
     <script src="assets/js/modal.js"></script>
 </body>

@@ -80,21 +80,50 @@ body {
     margin-top: 35px;
 }*/
 
-body {
+/*body {
     margin: 0;
     padding: 0;
-}
+}*/
+
 .header {
     display: flex;
-    height: 50px;
+    height: 70px;
     justify-content: space-around;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-header h2 {
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-logo img {
+    margin-right: 16px;
+}
+
+.header-logo h1 {
     margin: 0;
     color: #005BFE;
 }
+
+.header-title {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.header-navigation button {
+    font-weight: 70;
+    margin-right: 16px;
+}
+
+.header-navigation button:last-child {
+    margin-right: 0
+}
+
+
 .header ul {
     list-style: none;
     margin: 0;
@@ -123,3 +152,8 @@ footer {
     justify-content: center;
     align-items: center;
 }*/
+
+.add-icon-img {
+    margin-top: -2px;
+    margin-left: 5px;
+}

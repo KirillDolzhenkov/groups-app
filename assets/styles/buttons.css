@@ -1,28 +1,39 @@
 .primary,
+.primary-alt,
 .secondary{
     color: #FFFFFF;
-    font-family: RobotoM, sans-serif;
-    font-size: 17px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
     cursor: pointer;
+
+    border: none;
+    padding: 10px 14px;
+    border-radius: 5px;
 }
 
 .primary {
-    background: #4452FE;
-    border: none;
-    padding: 20px 40px;
+    background: #005BFE;
 }
 
 .primary:hover{
-    background: #3444e5;
+    background: #0047C6;
+}
+
+.primary-alt {
+    background: #F81155;
+}
+
+.primary-alt:hover {
+    background: #D1003E;
 }
 
 .secondary {
-    border: 1px solid white;
-    background: transparent;
-    padding: 19px 39px;
+    background: rgba(0, 0, 0, 0);
+    color: #005BFE;
 }
 
 .secondary:hover{
-    color: #c4c2c2;
-    border-color: #c4c2c2;
+    color: #005BFE;
+    background: rgb(206, 216, 231);
 }
