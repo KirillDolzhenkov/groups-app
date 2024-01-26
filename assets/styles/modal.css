@@ -203,6 +203,7 @@
 }
 
 .sidebar-form-container {
+    border: cornflowerblue 2px solid;
     width: 100%;
     display: flex;
     flex-direction: column;

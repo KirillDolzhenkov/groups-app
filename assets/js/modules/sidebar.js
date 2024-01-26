@@ -1,58 +1,35 @@
-/*const modalLinks = document.querySelectorAll(".modal-link");
-const body = document.querySelector("body");
-const lockPadding = document.querySelectorAll(".lock-padding");
+import {CONTACT_GROUPS, ADDING_CONTACT} from "../main.js";
+import {getSidebarContent} from "./content.js";
+import {addItemForm} from "./addItemForm.js";
+import {createElement} from "./createElement.js";
+import {modalBody} from "../main.js";
 
-let unlock = true;
-const timeout = 800;
 
-if (modalLinks.length > 0) {
-    for (let i = 0; i < modalLinks.length; i++) {
-        const modalLink = modalLinks[i];
-        modalLink.addEventListener("click", function (e){
-            const modalName = modalLink.getAttribute("href").replace("#", "");
-            const currentModal = document.getElementById(modalName);
-            modalOpen(currentModal);
-            e.preventDefault();
-        });
-    }
+export function openSidebar(title, modalBody, sidebarBody) {
+    modalBody.classList.add("open");
+    document.body.classList.add("stop-scrolling");
+
+    sidebarBody.innerHTML = getSidebarContent(title);
+    generateButtons(title);
 }
 
-const modalCloseIcon = document.querySelectorAll(".close-modal");
-if (modalCloseIcon.length > 0) {
-    for (let i = 0; i < modalLinks.length; i++) {
-        const el = modalCloseIcon[i];
-        el.addEventListener("click", function (e){
-            modalClose(el.closest(".modal"));
-            e.preventDefault();
-        });
-    }
+export function closeSidebar(modalBody) {
+    modalBody.classList.remove("open");
+    document.body.classList.remove("stop-scrolling");
 }
 
-function modalOpen(currentModal) {
-    if (currentModal && unlock) {
-        const modalActive = document.querySelector(".modal.open");
-        if (modalActive) {
-            modalClose(modalActive, false);
-        } else {
-            bodyLock();
-        }
-        currentModal.classList.add(".open");
-        currentModal.addEventListener("click", function (e) {
-            if (!e.currentTarget.closest(".modal__body")) {
-                modalClose(e.currentTarget.closest(".modal"));
-            }
-        });
+export function generateButtons(title) {
+    const btnClose = document.querySelector("#sidebar-close");
+    btnClose.addEventListener("click", () => closeSidebar(modalBody));
+
+    if (title === ADDING_CONTACT) {
+        const sidebarForm = document.querySelector("#sidebar-form");
+        const saveBtn = document.querySelector("#saveButton");
+        saveBtn.addEventListener("click", (event) => addItemForm(event, sidebarForm));
+    }
+
+    if (title === CONTACT_GROUPS) {
+        const createButton = document.querySelector("#createButton");
+        createButton.addEventListener("click", createElement);
     }
 }
-
-function popupClose(modalActive, doUnlock = true) {
-    if (unlock) {
-        modalActive.classList.add(".open");
-        if (unlock) {
-            bodyUnLock();
-        }
-    }
-}
-
-function bodyLock() {}
-function bodyUnLock() {}*/
